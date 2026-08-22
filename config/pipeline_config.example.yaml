@@ -1,0 +1,121 @@
+# =============================================================================
+# PeptSesame Pipeline Configuration — EXAMPLE (GitHub 公开版)
+# =============================================================================
+# 本文件是模板: 不含任何内部绝对路径。
+# 用法: 复制为 config/pipeline_config.yaml 后填入你本地的基因组路径。
+#
+#   cp config/pipeline_config.example.yaml config/pipeline_config.yaml
+#
+# 所有路径可用 ${PEPTSESAME_ROOT} 环境变量或相对路径 (相对本文件所在目录)。
+# =============================================================================
+
+# ---------------------------------------------------------------------------
+# PROJECT METADATA
+# ---------------------------------------------------------------------------
+project:
+  name: "PeptSesame"
+  version: "1.0.0"
+  description: >
+    Plant small peptide (small ORF-encoded peptide / micropeptide) discovery
+    pipeline. Designed for crops without existing Ribo-seq or MS proteomics data,
+    using multi-evidence computational scoring.
+  species_primary: "Sesamum indicum (sesame)"
+  species_focus: ["Sesamum indicum", "Sesamum (wild relatives)", "Arabidopsis thaliana",
+                  "Oryza sativa", "Zea mays", "Glycine max", "Solanum lycopersicum"]
+  output_prefix: "PeptSesame"
+
+# ---------------------------------------------------------------------------
+# PATHS — 用环境变量 PEPTSESAME_ROOT 或相对路径；本地部署时替换为你自己的目录
+# ---------------------------------------------------------------------------
+paths:
+  project_root: "${PEPTSESAME_ROOT:-.}"
+  data_dir: "${PEPTSESAME_ROOT:-.}/data"
+  config_dir: "${PEPTSESAME_ROOT:-.}/config"
+  pipeline_dir: "${PEPTSESAME_ROOT:-.}/pipeline"
+  scripts_dir: "${PEPTSESAME_ROOT:-.}/scripts"
+  results_dir: "${PEPTSESAME_ROOT:-.}/results"
+  logs_dir: "${PEPTSESAME_ROOT:-.}/logs"
+  tmp_dir: "${PEPTSESAME_ROOT:-.}/tmp"
+  scratch_ssd: "${TMPDIR:-/tmp}"          # 高性能临时盘 (SLURM 节点用本地 SSD)
+  public_genome_db: ""                    # 可选: 公共基因组库路径
+
+# ---------------------------------------------------------------------------
+# GENOME DATA REGISTRY — 每条记录填你本地的 FASTA/GFF 路径
+# ---------------------------------------------------------------------------
+# 结构说明:
+#   <registry_key>:
+#     species: 物种学名
+#     common_name: 展示名
+#     genome_fasta: FASTA 路径 (必填)
+#     gff: GFF3 注释路径 (可选, 有则做 CDS-overlap 过滤)
+#     pep_fasta: 蛋白 FASTA (可选)
+#     genome_type: T2T_cultivar / T2T_wild / chromosome / scaffold
+#     genome_source: 数据来源 (数据库/项目)
+#     notes: 备注
+genomes:
+
+  # --- 栽培芝麻 ---
+  sesame_Yu11:
+    species: "Sesamum indicum"
+    common_name: "Sesame — Yu11"
+    genome_fasta: "<path/to/Yu11.fasta>"
+    gff: "<path/to/Yu11.gff3>"
+    pep_fasta: "<path/to/Yu11.pep.fa>"
+    genome_type: "T2T_cultivar"
+    genome_source: "Sesame SuperPangenome Project"
+    notes: "Example entry — replace with your local paths."
+
+  # --- 野生芝麻 (示例) ---
+  wild_14G01:
+    species: "Sesamum (wild)"
+    common_name: "Wild sesame — 14G01"
+    genome_fasta: "<path/to/14G01.fasta>"
+    gff: "<path/to/14G01.gff3>"
+    pep_fasta: "<path/to/14G01.pep.fa>"
+    genome_type: "T2T_wild"
+    genome_source: "Sesame Evolution SPP"
+
+  # --- 跨物种 (示例: 拟南芥/水稻/玉米) ---
+  Arabidopsis:
+    species: "Arabidopsis thaliana"
+    common_name: "Arabidopsis — TAIR10"
+    genome_fasta: "<path/to/TAIR10.fasta>"
+    gff: "<path/to/TAIR10.gff3>"
+    genome_type: "chromosome"
+    genome_source: "TAIR"
+
+  Oryza_sativa:
+    species: "Oryza sativa"
+    common_name: "Rice — IRGSP-1.0"
+    genome_fasta: "<path/to/IRGSP1.0.fasta>"
+    gff: "<path/to/IRGSP1.0.gff3>"
+    genome_type: "chromosome"
+    genome_source: "IRGSP"
+
+  Zea_mays:
+    species: "Zea mays"
+    common_name: "Maize — B73 NAM v5"
+    genome_fasta: "<path/to/B73v5.fasta>"
+    gff: "<path/to/B73v5.gff3>"
+    genome_type: "chromosome"
+    genome_source: "MaizeGDB"
+
+# ---------------------------------------------------------------------------
+# PIPELINE DEFAULTS
+# ---------------------------------------------------------------------------
+pipeline:
+  orf_length_min_nt: 30
+  orf_length_max_nt: 300
+  min_medium_score: 0.40
+  min_high_score: 0.70
+  threads: 4
+
+# ---------------------------------------------------------------------------
+# SLURM DEFAULTS (集群部署时调整)
+# ---------------------------------------------------------------------------
+slurm:
+  partition: ""
+  account: ""
+  time: "04:00:00"
+  mem_gb: 16
+  cpus: 4

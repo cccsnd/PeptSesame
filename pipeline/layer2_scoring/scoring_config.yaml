@@ -1,0 +1,47 @@
+# PeptSesame Layer2 — Scoring Configuration
+# ==========================================
+# Evidence weights and thresholds for the multi-evidence scoring system.
+
+# Evidence weights (must sum ≈ 1.0)
+weights:
+  sequence_features: 0.30
+  conservation: 0.20
+  expression: 0.15
+  structural: 0.20
+  motif: 0.15
+
+# Default score thresholds for confidence tiers
+confidence:
+  high: 0.70
+  medium: 0.40
+  low: 0.00
+
+# Conservation thresholds
+conservation:
+  evalue: 1.0e-3
+  min_pident: 30.0  # percent
+  min_bitscore: 20
+
+# Expression thresholds
+expression:
+  high_rpkm: 10.0
+  medium_rpkm: 2.0
+  low_rpkm: 0.5
+
+# Structural feature thresholds
+structural:
+  tm_window: 21
+  tm_hydrophobic_threshold: 14
+  signal_peptide_min_length: 20
+  crp_min_cys_freq: 0.04
+  crp_max_cys_freq: 0.12
+
+# Sequence feature parameters
+sequence_features:
+  kmer_sizes: [1, 2, 3, 4]
+  ideal_hydrophobic_fraction: 0.35
+  min_length_for_coding: 15
+  max_dipeptide_entropy: 7.64  # log2(20*20)
+
+# Motif database path (optional, can be set at runtime)
+motif_db_path: null

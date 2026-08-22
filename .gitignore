@@ -1,0 +1,47 @@
+# Data (large files, not for git)
+results/
+results_v2/
+results_v3/
+results_v4/
+data/
+papers/
+models/
+logs/
+projects/
+*.bed
+*.fa
+*.fasta
+*.fna
+*.gff*
+*.tsv
+*.csv
+*.xlsx
+*.png
+*.tif
+*.pdf
+*.gz
+*.zip
+*.tmp
+
+# Python
+__pycache__/
+*.pyc
+*.egg-info/
+dist/
+build/
+.venv/
+venv/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+
+# SLURM
+logs/slurm/
+
+# Internal config (contains absolute paths; only the .example.yaml is public)
+config/pipeline_config.yaml
+
+tmp/
+scratch/
