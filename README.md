@@ -170,7 +170,7 @@ preparation).
 The PeptSesame source code is publicly available at
 [https://github.com/<org>/peptsesame](https://github.com/<org>/peptsesame)
 under the MIT license, and archived at Zenodo
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.<XXXXX>.svg)](https://doi.org/10.5281/zenodo.22064668).
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.22064668.svg)](https://doi.org/10.5281/zenodo.22064668).
 
 - **Pipeline + scripts:** this repository (no genome data committed)
 - **Full results (18-genome motif-compatible candidate tables, 30 FDR-DEGs /
