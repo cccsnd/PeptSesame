@@ -54,6 +54,7 @@ scripts/workflow/layer4_novel.py <species>   # novelty vs annotated proteins
 scripts/workflow/layer4_core.py              # conserved × novel core set
 scripts/workflow/run_expression.py           # sORF→gene mapping + DE (Yu11 charcoal rot)
 scripts/workflow/benchmark_*.py              # motif recall/PPV, weight sensitivity, null model
+scripts/workflow/null_model_motif.py          # Yu11 motif-hit empirical null (1,000 permutations)
 scripts/workflow/tables*.py / generate_figures.py   # manuscript tables & figures
 ```
 
