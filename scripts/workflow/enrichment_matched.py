@@ -6,7 +6,7 @@ Background for core-set enrichment must be matched by length/composition/family.
 方法: 分层 permutation — 按 (家族 × 长度 bin 10aa) 分层, 从非 DE 的
 Yu11 SSP 中按 DE 集合的层比例抽取 240 个背景 × 10,000 次, 统计核心集
 命中数分布, 观测值 55 的置换 p 值 + 期望命中率。
-输出: results_v2/08_benchmark/enrichment_matched.tsv
+输出: results/08_benchmark/enrichment_matched.tsv
 """
 import csv
 import random
@@ -14,7 +14,7 @@ from collections import Counter, defaultdict
 from pathlib import Path
 
 ROOT = Path(os.environ.get("PEPTSESAME_ROOT", "."))
-R2 = ROOT / "results_v2"
+R2 = ROOT / "results"
 OUT = R2 / "08_benchmark"
 N_PERM = 10000
 RNG = random.Random(42)

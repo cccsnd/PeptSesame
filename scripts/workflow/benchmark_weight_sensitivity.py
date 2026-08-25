@@ -2,7 +2,7 @@
 """benchmark_weight_sensitivity.py — 评分权重敏感性 (08_benchmark, current pipeline)
 
 Method (consistent with the earlier score_weight_sensitivity.py; 5→6 channels):
-- 输入: results_v2/02_layer2_scoring/Yu11/scored_sorfs.tsv (445 万 sORF, 513MB)
+- 输入: results/02_layer2_scoring/Yu11/scored_sorfs.tsv (445 万 sORF, 513MB)
 - 权重 (pipeline/layer2_scoring/scoring_core.py DEFAULT_WEIGHTS, 和≈1.0):
     sequence_features 0.20, ml 0.25, conservation 0.15,
     expression 0.10, structural 0.15, motif 0.15
@@ -11,7 +11,7 @@ Method (consistent with the earlier score_weight_sensitivity.py; 5→6 channels)
         ② Top-100 候选 Jaccard 重叠率
 - 结论判断: ρ>0.98 且 Top-100 Jaccard 大多 >0.7 → 排名对权重稳健
 
-输出: results_v2/08_benchmark/weight_sensitivity.tsv + 控制台摘要
+输出: results/08_benchmark/weight_sensitivity.tsv + 控制台摘要
 """
 import csv
 import os
@@ -22,7 +22,7 @@ import pandas as pd
 from scipy.stats import spearmanr
 
 ROOT = Path(os.environ.get("PEPTSESAME_ROOT", "."))
-R2 = ROOT / "results_v2"
+R2 = ROOT / "results"
 SRC = R2 / "02_layer2_scoring/Yu11/scored_sorfs.tsv"
 OUT_DIR = R2 / "08_benchmark"
 OUT_DIR.mkdir(parents=True, exist_ok=True)

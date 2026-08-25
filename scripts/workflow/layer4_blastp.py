@@ -8,7 +8,7 @@
 import os, subprocess, time
 
 ROOT = os.environ.get("PEPTSESAME_ROOT", ".")
-R2 = f"{ROOT}/results_v2"
+R2 = f"{ROOT}/results"
 CS = f"{R2}/05_cross_species"
 BLASTP = "blastp"
 DB = f"{CS}/all_ssp_db"

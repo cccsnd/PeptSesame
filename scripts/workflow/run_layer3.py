@@ -2,10 +2,10 @@
 """Layer3 classification (strict pipeline, motif + is_ida_like)
 
 输入:
-  Layer2: results_v2/02_layer2_scoring/<sp>/scored_sorfs.tsv (分数)
-  Layer1: results_v2/01_layer1_sixframe/<sp>/sorfs.fa (序列)
+  Layer2: results/02_layer2_scoring/<sp>/scored_sorfs.tsv (分数)
+  Layer1: results/01_layer1_sixframe/<sp>/sorfs.fa (序列)
 输出:
-  results_v2/03_layer3_classify/<sp>/classified_sorfs.tsv
+  results/03_layer3_classify/<sp>/classified_sorfs.tsv
 自检: 行数 = Layer2 行数; is_ssp 计数; 家族计数; is_ida_like 计数
 
 用法: python run_layer3.py <species>
@@ -14,7 +14,7 @@ import os, sys, csv, re, time
 from collections import Counter
 
 ROOT = os.environ.get("PEPTSESAME_ROOT", ".")
-R2 = f"{ROOT}/results_v2"
+R2 = f"{ROOT}/results"
 
 sys.path.insert(0, ROOT)
 from pipeline.layer3_classify.motif_profiles import SSP_MOTIFS

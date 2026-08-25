@@ -8,12 +8,12 @@
 4. 核心集 = conserved × novel
 
 依赖: blastp (需在 PATH 或指定)
-输出: results_v2/05_cross_species/
+输出: results/05_cross_species/
 """
 import os, sys, subprocess, json
 
 ROOT = os.environ.get("PEPTSESAME_ROOT", ".")
-R2 = f"{ROOT}/results_v2"
+R2 = f"{ROOT}/results"
 CS = f"{R2}/05_cross_species"
 os.makedirs(CS, exist_ok=True)
 

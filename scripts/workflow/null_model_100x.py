@@ -8,7 +8,7 @@ Method:
   * 100 次置换 → 均值 + 95% CI (2.5%/97.5% 分位)
 - 输出: 观测密度 vs null 密度 (mean, 95% CI) + 观测/null 比值 (mean, CI)
 
-输出: results_v2/08_benchmark/null_model_100x.tsv
+输出: results/08_benchmark/null_model_100x.tsv
 """
 import random
 import os
@@ -17,13 +17,13 @@ import time
 from pathlib import Path
 
 ROOT = Path(os.environ.get("PEPTSESAME_ROOT", "."))
-R2 = ROOT / "results_v2"
+R2 = ROOT / "results"
 OUT = R2 / "08_benchmark"
 
 SPECIES = {
-    "Yu11": "results_v2/00_inputs/genomes/Yu11.fasta",
-    "Arabidopsis": "results_v2/00_inputs/genomes/Arabidopsis.fasta",
-    "Maize": "results_v2/00_inputs/genomes/Maize_B73.fasta",
+    "Yu11": "results/00_inputs/genomes/Yu11.fasta",
+    "Arabidopsis": "results/00_inputs/genomes/Arabidopsis.fasta",
+    "Maize": "results/00_inputs/genomes/Maize_B73.fasta",
 }
 N_PERM = 100
 SUB = 5_000_000  # 每条染色体前 5 Mb

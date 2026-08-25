@@ -9,7 +9,7 @@ import os, csv
 from collections import Counter
 
 ROOT = os.environ.get("PEPTSESAME_ROOT", ".")
-R2 = f"{ROOT}/results_v2"
+R2 = f"{ROOT}/results"
 CS = f"{R2}/05_cross_species"
 ALL = ["Yu11", "S3651", "14G01", "14G02", "K16", "ken1", "ken8",
        "Arabidopsis", "Rice", "Tomato", "Sunflower", "Flax", "Grape",

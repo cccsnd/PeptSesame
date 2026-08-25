@@ -6,14 +6,14 @@ import os
   - table2_family_counts.csv   Table 2: 18 物种 SSP 家族计数 (源: family_counts.tsv)
   - TableS1_18genome_stats.tsv 18 物种基因组统计 (Size/sORF 数/密度/SSP/家族)
   - TableS5_DE_candidates.tsv  DE 候选 (严格, 221)
-输出到 results_v2/09_tables/
+输出到 results/09_tables/
 """
 import csv
 from collections import defaultdict
 from pathlib import Path
 
 ROOT = Path(os.environ.get("PEPTSESAME_ROOT", "."))
-R2 = ROOT / "results_v2"
+R2 = ROOT / "results"
 OUT = R2 / "09_tables"
 OUT.mkdir(parents=True, exist_ok=True)
 

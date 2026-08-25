@@ -5,14 +5,14 @@
   - mmc13 = Table S11: Arabidopsis NCPs (MS 验证的非经典肽, 1,862 条)
   - mmc14 = Table S12: Arabidopsis CPs  (MS 验证的常规肽, 2,365 条)
 基准 1 (坐标级召回): MS 验证肽的基因组坐标 vs PeptSesame Arabidopsis
-  sORF 坐标 (results_v2/03/Arabidopsis) → 被任意 sORF 捕获比例 + 被
+  sORF 坐标 (results/03/Arabidopsis) → 被任意 sORF 捕获比例 + 被
   is_ssp=True 候选捕获比例 (nuclear 染色体 1-5; 排除 Mt/Pt)。
 基准 2 (序列级 motif 命中): 八家族 motif 在 CP/NCP 序列上的命中率
   (CP 中大部分不是八家族成员, 命中比例是 motif 特异性的独立参考)。
 基准 3 (负集 FPR): Yu11 注释蛋白 60-aa 滑窗片段 (非 SSP 蛋白背景,
   组成匹配) 的八家族 motif 命中率 vs 随机 60-aa 肽。
 
-输出: results_v2/08_benchmark/external_benchmark.tsv + 控制台摘要
+输出: results/08_benchmark/external_benchmark.tsv + 控制台摘要
 """
 import csv
 import re
@@ -55,7 +55,7 @@ def load_arabidopsis_sorfs():
     """chrom -> [(start, end, is_ssp)]"""
     from collections import defaultdict
     idx = defaultdict(list)
-    path = ROOT / "results_v2/03_layer3_classify/Arabidopsis/classified_sorfs.tsv"
+    path = ROOT / "results/03_layer3_classify/Arabidopsis/classified_sorfs.tsv"
     with open(path) as f:
         for r in csv.DictReader(f, delimiter="\t"):
             idx[r["chrom"]].append((int(r["start"]), int(r["end"]),
@@ -121,8 +121,8 @@ def main():
               f"序列 motif 命中: {mh_any} ({mh_any/len(recs)*100:.1f}%)")
 
     # 负集: Yu11 注释蛋白 60aa 滑窗
-    gff = ROOT / "results_v2/00_inputs/annotations/Yu11.gff3"
-    fa = ROOT / "results_v2/00_inputs/genomes/Yu11.fasta"
+    gff = ROOT / "results/00_inputs/annotations/Yu11.gff3"
+    fa = ROOT / "results/00_inputs/genomes/Yu11.fasta"
     from collections import defaultdict
     cds = defaultdict(list)
     with open(gff) as f:
@@ -188,7 +188,7 @@ def main():
     out.append({"set": "Yu11_CDS_60aa_neg", "n": n_win,
                 "motif_hit_rate": n_hit})
 
-    outp = ROOT / "results_v2/08_benchmark/external_benchmark.tsv"
+    outp = ROOT / "results/08_benchmark/external_benchmark.tsv"
     with open(outp, "w") as f:
         f.write("set\tn\tlen_10_100\tcovered_by_any_sorf\t"
                 "covered_by_ssp_candidate\tmotif_hit_rate\tnote\n")

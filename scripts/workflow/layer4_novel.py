@@ -11,7 +11,7 @@
 import os, subprocess, time, csv
 
 ROOT = os.environ.get("PEPTSESAME_ROOT", ".")
-R2 = f"{ROOT}/results_v2"
+R2 = f"{ROOT}/results"
 CS = f"{R2}/05_cross_species"
 BLASTP = "blastp"
 MAKEDB = "makeblastdb"

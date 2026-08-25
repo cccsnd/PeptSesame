@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""run_expression.py — current pipeline 表达/DE 分析 (results_v2/06_expression)
+"""run_expression.py — current pipeline 表达/DE 分析 (results/06_expression)
 
 Method identical to the established screen_resistance_ssp.py (current pipeline):
   1. SSP 候选 = Layer3 is_ssp=True (motif library, Yu11 = 5,289)
@@ -12,7 +12,7 @@ Method identical to the established screen_resistance_ssp.py (current pipeline):
   8. FDR: gene-level padj lookup (reusing the revised deseq2_approx_yu11_sm48.tsv,
      count 矩阵为基因级, 与 sORF 版本无关; padj<0.05 为 FDR 通过)
 
-输出 (results_v2/06_expression/):
+输出 (results/06_expression/):
   - sorf_gene_map.tsv            全部 SSP sORF→基因映射 + 家族 + 核心集标记
   - expressed_sorfs.tsv          有 FPKM 数据的 SSP sORF (基因级)
   - de_candidates_strict.tsv  |log2FC|>1 候选 (主文件)
@@ -33,7 +33,7 @@ import numpy as np
 import pandas as pd
 
 ROOT = Path(os.environ.get("PEPTSESAME_ROOT", "."))
-R2 = ROOT / "results_v2"
+R2 = ROOT / "results"
 OUT = R2 / "06_expression"
 OUT.mkdir(parents=True, exist_ok=True)
 

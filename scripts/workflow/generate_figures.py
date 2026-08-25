@@ -2,11 +2,11 @@
 """generate_figures.py — Paper1 图表 数据版 (Figure 2/3/4/5/6/7)
 
 reworked from the earlier version with updated data sources:
-- 数据全部来自 results_v2/ (Table2 / TableS1 / 02-03 S3651 / 06 表达 / 07 PTM)
+- 数据全部来自 results/ (Table2 / TableS1 / 02-03 S3651 / 06 表达 / 07 PTM)
 - fig2B classification: the earlier miPEP/AMP columns no longer exist → SSP candidates vs non-SSP
 - fig6: 273 DE → 221 DE; summary 文字全部更新为 数字
 - fig7: PTM 指纹用 DE 候选 PTM (07 产物)
-- 输出 PDF+PNG 到 results_v2/10_figures/
+- 输出 PDF+PNG 到 results/10_figures/
 """
 import csv
 import json
@@ -16,7 +16,7 @@ from collections import Counter
 from pathlib import Path
 
 ROOT = Path(os.environ.get("PEPTSESAME_ROOT", "."))
-R2 = ROOT / "results_v2"
+R2 = ROOT / "results"
 
 import numpy as np
 import pandas as pd

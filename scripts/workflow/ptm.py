@@ -9,7 +9,7 @@ Earlier results:
   - plantptm_annotation_yu11_allssp_highconf.tsv (Yu11 全部 SSP)
 sORFs from genes beyond the original 273 that are absent from the earlier table are flagged as missing.
 
-输出: results_v2/07_ptm/
+输出: results/07_ptm/
   - plantptm_de_candidates.tsv   DE sORF × PTM 位点 (高置信)
   - ptm_coverage.md              覆盖统计
 """
@@ -18,7 +18,7 @@ from collections import Counter, defaultdict
 from pathlib import Path
 
 ROOT = Path(os.environ.get("PEPTSESAME_ROOT", "."))
-R2 = ROOT / "results_v2"
+R2 = ROOT / "results"
 OUT = R2 / "07_ptm"
 OUT.mkdir(parents=True, exist_ok=True)
 

@@ -10,7 +10,7 @@ import sys
 from pathlib import Path
 
 ROOT = Path(os.environ.get("PEPTSESAME_ROOT", "."))
-R2 = ROOT / "results_v2"
+R2 = ROOT / "results"
 OUT = R2 / "09_tables"
 OUT.mkdir(parents=True, exist_ok=True)
 

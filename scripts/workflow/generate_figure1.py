@@ -20,7 +20,7 @@ from matplotlib.patches import FancyBboxPatch, FancyArrowPatch
 import os as _os
 from pathlib import Path as _Path
 ROOT = _Path(_os.environ.get("PEPTSESAME_ROOT", "."))
-OUTDIR = ROOT / "results_v2/10_figures"
+OUTDIR = ROOT / "results/10_figures"
 OUTDIR.mkdir(parents=True, exist_ok=True)
 BLUE = "#2C7FB8"; RED = "#D95F0E"; GREEN = "#31A354"; GRAY = "#999999"; LIGHT = "#E8F0F8"; GOLD = "#B8860B"
 
@@ -42,8 +42,8 @@ def load_bed_stats(bed_path):
             chr_counts[chrom] += 1
     return lengths, chr_counts
 
-s3651_bed = ROOT / "results_v2/01_layer1_sixframe/S3651/sorfs.bed"
-yu11_bed = ROOT / "results_v2/01_layer1_sixframe/Yu11/sorfs.bed"
+s3651_bed = ROOT / "results/01_layer1_sixframe/S3651/sorfs.bed"
+yu11_bed = ROOT / "results/01_layer1_sixframe/Yu11/sorfs.bed"
 s3651_len, s3651_chr = load_bed_stats(s3651_bed)
 yu11_len, yu11_chr = load_bed_stats(yu11_bed)
 print(f"S3651: {len(s3651_len):,} sORFs, {len(s3651_chr)} chroms")

@@ -16,7 +16,7 @@ ROOT = os.environ.get("PEPTSESAME_ROOT", ".")
 sys.path.insert(0, f"{ROOT}/pipeline/layer1_sixframe")
 from sixframe import SixFrameTranslator
 
-R2 = f"{ROOT}/results_v2"
+R2 = f"{ROOT}/results"
 
 def load_manifest():
     with open(f"{R2}/species_manifest.json") as f:

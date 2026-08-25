@@ -8,7 +8,7 @@ Method (identical to the earlier gen_tableS6_motif_benchmark.py):
 - recall = 金标准命中比例; FPR = 5,000 条随机 60aa 肽命中比例
 - PPV 估计 = recall / (recall + fp_rate×99) (假设金标准正例占候选池 1%)
 
-输出: results_v2/08_benchmark/TableS6_motif_benchmark.tsv
+输出: results/08_benchmark/TableS6_motif_benchmark.tsv
 """
 import random
 import re
@@ -20,7 +20,7 @@ ROOT = Path(os.environ.get("PEPTSESAME_ROOT", "."))
 sys.path.insert(0, str(ROOT))
 from pipeline.layer3_classify.motif_profiles import SSP_MOTIFS
 
-OUT_DIR = ROOT / "results_v2/08_benchmark"
+OUT_DIR = ROOT / "results/08_benchmark"
 OUT_DIR.mkdir(parents=True, exist_ok=True)
 
 # gold standard (as in the earlier gen_tableS6_motif_benchmark.py; Arabidopsis known family members)

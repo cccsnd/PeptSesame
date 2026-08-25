@@ -1,20 +1,22 @@
 #!/usr/bin/env python3
-"""v2 全流程重跑 — Layer1 六框翻译 (从原始基因组 FASTA, 输出到 results_v2)
+"""full pipeline rerun — Layer1 六框翻译 (从原始基因组 FASTA, 输出到 results)
 
-严格从零: 输入 = 原始基因组 FASTA + GFF (只读); 输出 = results_v2/01_layer1_sixframe/
+严格从零: 输入 = 原始基因组 FASTA + GFF (只读); 输出 = results/01_layer1_sixframe/
 不复用 results/ 任何文件
 
 用法: python run_layer1.py <species> <genome_fasta> [gff]
 """
 import os, sys, time, logging
 
-ROOT = os.environ.get("PEPTSESAME_ROOT", ".")
+_SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
+ROOT = os.environ.get("PEPTSESAME_ROOT", os.path.dirname(os.path.dirname(_SCRIPT_DIR)))
 sys.path.insert(0, f"{ROOT}/pipeline/layer1_sixframe")
-from sixframe import SixFrameTranslator
+from sixframe import SixFrameTranslator  # noqa: E402
 
-def run(species, genome_fasta, gff=None, min_len=30, max_len=300):
+def run(species, genome_fasta, gff=None, min_len=30, max_len=300, outdir=None):
     t0 = time.time()
-    out_dir = f"{ROOT}/results_v2/01_layer1_sixframe/{species}"
+    root = outdir if outdir else ROOT
+    out_dir = f"{root}/results/01_layer1_sixframe/{species}"
     os.makedirs(out_dir, exist_ok=True)
     bed = f"{out_dir}/sorfs.bed"
     fa = f"{out_dir}/sorfs.fa"
@@ -33,7 +35,11 @@ def run(species, genome_fasta, gff=None, min_len=30, max_len=300):
     return n
 
 if __name__ == "__main__":
-    species = sys.argv[1]
-    genome = sys.argv[2]
-    gff = sys.argv[3] if len(sys.argv) > 3 else None
-    run(species, genome, gff)
+    import argparse
+    ap = argparse.ArgumentParser(description="Layer 1: six-frame ORF scanning")
+    ap.add_argument("species")
+    ap.add_argument("genome")
+    ap.add_argument("gff", nargs="?")
+    ap.add_argument("--outdir", default=None, help="output root (default: PEPTSESAME_ROOT/results)")
+    args = ap.parse_args()
+    run(args.species, args.genome, args.gff, outdir=args.outdir)

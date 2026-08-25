@@ -5,14 +5,14 @@
 依赖: blastp + makeblastdb (graphpan env)
 
 输出:
-- results_v2/05_cross_species/conserved_hits.tsv (每 SSP 的跨物种命中)
-- results_v2/05_cross_species/novel_vs_yu11.tsv (vs Yu11 注释蛋白)
-- results_v2/05_cross_species/novel_conserved_ssp.tsv (核心集)
+- results/05_cross_species/conserved_hits.tsv (每 SSP 的跨物种命中)
+- results/05_cross_species/novel_vs_yu11.tsv (vs Yu11 注释蛋白)
+- results/05_cross_species/novel_conserved_ssp.tsv (核心集)
 """
 import os, sys, subprocess, csv, json
 
 ROOT = os.environ.get("PEPTSESAME_ROOT", ".")
-R2 = f"{ROOT}/results_v2"
+R2 = f"{ROOT}/results"
 CS = f"{R2}/05_cross_species"
 os.makedirs(CS, exist_ok=True)
 

@@ -33,9 +33,9 @@ COMPILED = {fam: re.compile(p) for fam, p in SSP_MOTIFS.items()}
 SAMPLE_N = 500_000
 FULL_LIB = 4_451_664
 SEED = 42
-ORIGINAL = ROOT / "results_v2/08_benchmark/empirical_null_v20260818.tsv"
-OUT = ROOT / "results_v2/08_benchmark/empirical_null_motif_1000x.tsv"
-SORFS_FA = ROOT / "results_v2/01_layer1_sixframe/Yu11/sorfs.fa"
+ORIGINAL = ROOT / "results/08_benchmark/empirical_null_v20260818.tsv"
+OUT = ROOT / "results/08_benchmark/empirical_null_motif_1000x.tsv"
+SORFS_FA = ROOT / "results/01_layer1_sixframe/Yu11/sorfs.fa"
 
 
 def load_sequences() -> list[str]:

@@ -2,13 +2,13 @@
 """Layer2 scoring (per-species strict pipeline)
 
 用法: python run_layer2.py <species> [--max-sorfs N]
-输出: results_v2/02_layer2_scoring/<species>/scored_sorfs.tsv
+输出: results/02_layer2_scoring/<species>/scored_sorfs.tsv
 自检: 行数 = Layer1 BED 行数 (除 header); 分数范围 0-1; 无空值
 """
 import os, sys, csv, time, argparse
 
 ROOT = os.environ.get("PEPTSESAME_ROOT", ".")
-R2 = f"{ROOT}/results_v2"
+R2 = f"{ROOT}/results"
 
 sys.path.insert(0, ROOT)  # 以包方式导入 pipeline.layer2_scoring
 from pipeline.layer2_scoring.scoring_core import EvidenceScorer
