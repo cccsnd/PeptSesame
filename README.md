@@ -51,7 +51,7 @@ scripts/workflow/run_layer3.py <species>     # motif classification → classifi
 scripts/workflow/layer4_prep.py / layer4_run.py / layer4_extract.py  # SSP extraction + BLASTP prep/run
 scripts/workflow/layer4_blastp.py <species>  # cross-species conservation
 scripts/workflow/layer4_novel.py <species>   # novelty vs annotated proteins
-scripts/workflow/layer4_core.py              # conserved × novel core set
+scripts/workflow/layer4_core.py              # conserved × unannotated candidate set
 scripts/workflow/run_expression.py           # sORF→gene mapping + DE (Yu11 charcoal rot)
 scripts/workflow/benchmark_*.py              # motif recall/PPV, weight sensitivity, null model
 scripts/workflow/null_model_motif.py          # Yu11 motif-hit empirical null (1,000 permutations)
@@ -75,7 +75,7 @@ Python ≥ 3.10. BLAST+ (`blastp`) is required for the cross-species layer.
 
 ```bash
 export PEPTSESAME_ROOT=$(pwd)
-mkdir -p data/genomes results_v2
+mkdir -p data/genomes results
 # 1) place genome FASTA + GFF under data/ and edit config/pipeline_config.example.yaml
 python scripts/workflow/run_layer1.py Yu11
 python scripts/workflow/run_layer2.py Yu11
@@ -97,7 +97,7 @@ MIT
   confirmed by mononucleotide-preserving null models
   (observed/random ratio 0.85–1.19)
 - Motif-compatible sORF candidate resource: 2,292–6,311 candidates per sesame
-  genome across eight conserved family-motif models (CLE, RALF, CEP, PSK,
+  genome across eight family-motif models (CLE, RALF, CEP, PSK,
   PSY1, IDA, EPFL, RGF), with 92.3% recovery of 13 curated reference members
   (four families), ≤0.11% background hit rate on randomized peptides and
   annotated-protein windows, and 73–90% coordinate-level coverage of
@@ -105,8 +105,8 @@ MIT
 - 30 host genes harbouring motif-compatible sORFs differentially expressed at
   BH FDR < 0.05 in stems during charcoal rot (*Macrophomina phaseolina*)
   infection (plus 221 effect-size-selected nominal loci); 55 of 240
-  effect-size-selected sORF–gene association records fell in the
-  Yu11-anchored conserved-and-unannotated core set (record-level permutation
+  transcriptomic effect-size-prioritized sORF–gene association records fell in the
+  conserved-but-unannotated candidate set (candidate-level permutation
   P = 0.0066; the enrichment was not detected at the host-gene level,
   P = 0.95)
 

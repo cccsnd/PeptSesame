@@ -4,7 +4,7 @@
 set -u
 cd "$(dirname "$0")/../.."   # repo root
 PY=${PYTHON:-python}
-R2=results_v2
+R2=results
 
 for sp in "$@"; do
     echo "[$(date +%H:%M:%S)] === $sp Layer2 ==="
