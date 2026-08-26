@@ -23,7 +23,7 @@ W = {"sequence_features": 0.20, "conservation": 0.15, "expression": 0.10,
 
 def load():
     rows = []
-    with open(V5 / "02_layer2_scoring/Yu11/scored_sorfs.tsv") as f:
+    with open(V5 / "results/02_layer2_scoring/Yu11/scored_sorfs.tsv") as f:
         for r in csv.DictReader(f, delimiter="\t"):
             rows.append({c: float(r[c]) for c in CH})
     return rows
@@ -82,4 +82,5 @@ def main():
 
 
 if __name__ == "__main__":
+    OUT.parent.mkdir(parents=True, exist_ok=True)
     main()
