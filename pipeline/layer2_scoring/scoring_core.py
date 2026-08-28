@@ -57,15 +57,14 @@ import numpy as np
 # Standard k-mer lengths for compositional analysis
 K_MER_SIZES = [1, 2, 3, 4]
 
-# Default weight vector — sum ≈ 1.0
-# ML权重0.25, 规则权重0.75
+# Default weight vector (production scoring, 4:3) — normalised to sum 1.0.
+# The production ranking score uses two active core channels (sequence and
+# structural features). Conservation, expression, and motif evidence are
+# computed as independent orthogonal downstream layers (sub-scores retained
+# in the output table) and are not included in the production ranking score.
 DEFAULT_WEIGHTS: Dict[str, float] = {
-    "sequence_features": 0.20,
-    "ml": 0.25,
-    "conservation": 0.15,
-    "expression": 0.10,
-    "structural": 0.15,
-    "motif": 0.15,
+    "sequence_features": 4,
+    "structural": 3,
 }
 
 # Amino acid groups for reduced-alphabet encoding
@@ -89,7 +88,7 @@ logger = logging.getLogger(__name__)
 
 @dataclass
 class EvidenceScores:
-    """Container for all five evidence scores and the aggregate."""
+    """Container for all evidence sub-scores and the aggregate."""
 
     seq_id: str
     sequence_features: float = 0.0
@@ -798,7 +797,7 @@ class MlScorerComputer:
 class EvidenceScorer:
     """Multi-evidence scoring system for small ORF coding potential.
 
-    Combines five evidence channels into a single aggregated score.
+    Combines the active core channels into a single aggregated ranking score.
     Supports configurable weights, per-channel sub-scores, and
     SLURM-aware batch processing.
 
@@ -903,7 +902,7 @@ class EvidenceScorer:
         blast_results: Optional[List[Dict[str, Any]]] = None,
         bam_path: Optional[str] = None,
     ) -> Dict[str, Any]:
-        """Run all five evidence channels and return aggregated result.
+        """Run all evidence channels and return the aggregated result.
 
         Parameters
         ----------
@@ -981,7 +980,7 @@ class EvidenceScorer:
     def aggregate_score(
         self, scores: EvidenceScores
     ) -> float:
-        """Weighted sum of all six evidence scores (5 rule + 1 ML).
+        """Weighted sum of the active core channel scores.
 
         Weights are taken from ``self.weights``.
         """

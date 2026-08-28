@@ -83,7 +83,7 @@ arrow(axA, 5.0, 7.4, 5.0, 6.9)
 
 # Layer 2
 box(axA, 2.2, 5.7, 5.6, 1.2,
-    "Layer 2: Multi-evidence scoring\n5 rule channels + ML (neutral)",
+    "Layer 2: Multi-evidence scoring\n2 core channels + orthogonal evidence layers",
     fc=LIGHT, ec=BLUE, fs=9)
 arrow(axA, 5.0, 5.7, 5.0, 5.2)
 

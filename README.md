@@ -24,16 +24,19 @@ mass-spectrometry-based coverage checks.
 
 ```
 Layer 1: Six-frame translation + CDS-overlap filtering → sORF catalog
-Layer 2: Multi-evidence scoring (5 rule channels) → priority score tiers
+Layer 2: Two-channel production scoring (sequence + structural features, 4:3) → priority score tiers
 Layer 3: Motif-compatible classification (8 SSP families + IDA-like flag)
 Layer 4: Functional annotation (GO / KEGG / cross-species conservation)
 ```
 
-The five rule-based evidence channels are: sequence features (k-mer
-composition, GC bias), cross-species conservation, RNA-seq expression,
-structural features (signal peptide, transmembrane, cysteine richness), and
-known motif matching. An optional machine-learning coding-potential channel is
-defined but contributes a neutral value in the default (rule-based) mode.
+The production ranking score combines two core rule-based channels:
+sequence features (k-mer composition, GC bias) and structural features
+(signal peptide, transmembrane, cysteine richness), weighted 4:3. Motif
+compatibility, cross-species sequence support, and RNA-seq host-locus
+expression are evaluated as independent orthogonal evidence layers and are
+not included in the production ranking score. An optional
+machine-learning coding-potential channel is defined but contributes a
+neutral value in the default (rule-based) mode.
 
 ## Repository layout
 
