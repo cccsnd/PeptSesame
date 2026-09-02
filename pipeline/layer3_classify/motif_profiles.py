@@ -15,7 +15,7 @@ Corrections (from 2026-08-14 domain review + literature check):
    PSK1-5 成熟肽 DYIYTQ) → 收紧为 DYIYT[QRK] (D 为成熟肽起始, YIYT 完全保守,
    第 5 位 Q 保守/R 罕见)。
 4. EPFL: the earlier Cys spacing 4-10/4-10/2/4-8/8-12 was too broad → 按 EPF/EPFL 保守骨架收紧
-   (Takata 2013; Lee 2015): C-x(2,5)-C-x(4,8)-C-x(2,4)-C-x(4,8)-C-x(6,10)-C,
+   (Tavormina 2015; Ohki et al. 2011): C-x(2,5)-C-x(4,8)-C-x(2,4)-C-x(4,8)-C-x(6,10)-C,
    总长要求 ≥45 aa (成熟肽区)。
 5. PIP alias: the earlier version wrongly listed "PIP" as an IDA alias → PIP (PAMP-INDUCED PEPTIDE, Hou 2014)
    是独立家族, 从 IDA 别名删除。
@@ -91,7 +91,7 @@ SSP_MOTIFS: dict[str, str] = {
     ),
 
     # --- EPFL family ---
-    # EPIDERMAL PATTERNING FACTOR-LIKE (Takata 2013; Lee 2015)
+    # EPIDERMAL PATTERNING FACTOR-LIKE (Tavormina 2015; Ohki et al. 2011)
     # 6-8 Cys conserved framework; the earlier spacing (4-10 aa) was too broad; corrected to:
     #   C-x(2,5)-C-x(4,8)-C-x(2,4)-C-x(4,8)-C-x(6,10)-C
     # 且要求全长 ≥45 aa (成熟肽区)
